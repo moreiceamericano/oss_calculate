@@ -11,3 +11,6 @@ oss__calculate
 
 * pyqt5 모듈 설치(python -m pip install pyqt5)
 * 파이썬 파일 실행(python calculator_main.py)
+
+#### 참고
+* https://studyingrabbit.tistory.com/23 링크의 코드 참고
