@@ -18,7 +18,7 @@ Explain how to run the automated tests for this system
 
 ## Contributing
 
-CONTRIBUTING.md 파일 참조
+CONTRIBUTING 파일 참조
 
 ## License
 
