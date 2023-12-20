@@ -9,75 +9,9 @@
 
 당연히 여러분들의 기여를 환영하지만 여러분의 시간과 노력이 투자된 뒤의 Pull requests가 거부되는 상황을 막기 위해 문의를 먼저 해주시길 부탁드립니다.
 
-### Fork and create a branch
+### 환경설정 및 테스트 방법
 
-If this is something you think you can fix, then [fork Active Admin] and create
-a branch with a descriptive name.
-
-### Get the test suite running
-
-Make sure you're using a recent Ruby and Node version. You'll also need Chrome installed in order to run Cucumber scenarios.
-
-Now install the development dependencies:
-
-```sh
-gem install foreman
-bundle install
-bin/yarn install
-```
-
-Now you should be able to run the entire suite using:
-
-```sh
-bin/rake
-```
-
-The task will generate a sample Rails application in `tmp/test_apps` to run the
-test suite against.
-
-If you want to test against a Rails version different from the latest, make sure
-you use the correct Gemfile, for example:
-
-```sh
-export BUNDLE_GEMFILE=gemfiles/rails_61/Gemfile
-```
-
-### Implement your fix or feature
-
-At this point, you're ready to make your changes. Feel free to ask for help.
-
-### View your changes in a Rails application
-
-Make sure to take a look at your changes in a browser. To boot up a test Rails app:
-
-```sh
-bin/rake local server
-```
-
-This will automatically create a Rails app if none already exists, and store it
-in the `tmp/development_apps` folder.
-
-You should now be able to open <http://localhost:3000/admin> in your browser and log in using `admin@example.com` and `password`.
-
-If you need to perform any other commands on the test application, just pass
-them to the `local` rake task. For example, to boot the rails console:
-
-```sh
-bin/rake local console
-```
-
-Or to migrate the database for a new migration:
-
-```sh
-bin/rake local db:migrate
-```
-
-### Create a Pull Request
-
-At this point, if your changes look good and tests are passing, you are ready to create a pull request.
-
-Github Actions will run our test suite against all supported Rails versions. It's possible that your changes pass tests in one Rails version but fail in another. In that case, you'll have to setup your development
-environment with the Gemfile for the problematic Rails version, and investigate what's going on.
+Windows 환경에서 python이 설치되어 있는 환경에서 해당 프로그램의 코드를 실행하면 됩니다.
 
 ### 기대하는 기여
 
