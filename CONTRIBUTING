@@ -1,19 +1,13 @@
-# Contributing
+# 기여에 앞서
 
 제 oss_calculate에 기여해주셔서 감사합니다! 여러분들의 도움 덕에 제 소스가 더 완벽해질 수 있습니다!
 기여 전에 이 파일을 먼저 한 번 읽어봐주시면 감사하겠습니다.
 
 ## Pull requests
 
-**Please ask first before starting work on any significant new features.**
+**새로운 작업을 시작하기 전에 문의를 먼저 해주세요.**
 
-It's never a fun experience to have your pull request declined after investing a lot of time and effort into a new feature. To avoid this from happening, we request that contributors create [a feature request](https://github.com/activeadmin/activeadmin/discussions/new?category=ideas) to first discuss any new ideas. Your ideas and suggestions are welcome!
-
-Please ensure that the tests are passing when submitting a pull request. If you're adding new features to ActiveAdmin, please include tests.
-
-## Where do I go from here?
-
-For any questions, support, or ideas, etc. [please create a GitHub discussion](https://github.com/activeadmin/activeadmin/discussions/new). If you've noticed a bug, [please submit an issue][new issue].
+당연히 여러분들의 기여를 환영하지만 여러분의 시간과 노력이 투자된 뒤의 Pull requests가 거부되는 상황을 막기 위해 문의를 먼저 해주시길 부탁드립니다.
 
 ### Fork and create a branch
 
@@ -85,21 +79,7 @@ At this point, if your changes look good and tests are passing, you are ready to
 Github Actions will run our test suite against all supported Rails versions. It's possible that your changes pass tests in one Rails version but fail in another. In that case, you'll have to setup your development
 environment with the Gemfile for the problematic Rails version, and investigate what's going on.
 
-## Merging a PR (maintainers only)
+### 기대하는 기여
 
-A PR can only be merged into master by a maintainer if: CI is passing, approved by another maintainer and is up to date with the default branch. Any maintainer is allowed to merge a PR if all of these conditions ae met.
-
-## Shipping a release (maintainers only)
-
-Maintainers need to do the following to push out a release:
-
-* Switch to the master branch and make sure it's up to date.
-* Make sure you have [chandler] properly configured. Chandler is used to
-  automatically submit github release notes from the changelog right after
-  pushing the gem to rubygems.
-* Run one of `bin/rake release:prepare_{prerelease,prepatch,patch,preminor,minor,premajor,major}`, push the result and create a PR.
-* Review and merge the PR. The generated changelog in the PR should include all user visible changes you intend to ship.
-* Run `bin/rake release` from the target branch once the PR is merged.
-
-[chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
-[new issue]: https://github.com/activeadmin/activeadmin/issues/new
+* 프로그램의 UI 향상
+* 기존에 없는 신규 연산 기능 추가
