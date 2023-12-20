@@ -14,7 +14,7 @@ oss__calculate
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+CONTRIBUTING 파일의 '환경설정 및 테스트 방법'의 내용 참조
 
 ## Contributing
 
