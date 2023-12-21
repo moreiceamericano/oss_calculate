@@ -15,6 +15,7 @@ class Main(QDialog):
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
 
+        # 수식 입력과 답 출력을 한 줄로 통합
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
         label_equation = QLabel("Equation: ")
         label_solution = QLabel("Solution: ")
