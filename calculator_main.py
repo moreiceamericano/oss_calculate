@@ -1,10 +1,14 @@
 import sys
 from PyQt5.QtWidgets import *
+from decimal import Decimal, getcontext
+import math
 
 class Main(QDialog):
     def __init__(self):
         super().__init__()
-        self.result_display = QLineEdit("")  
+        self.result_display = QLineEdit("")
+        getcontext().prec = 10
+        self.pending_operation = None
         self.init_ui()
 
     def init_ui(self):
@@ -63,32 +67,43 @@ class Main(QDialog):
         self.setLayout(main_layout)
         self.show()
 
-    #################
-    ### functions ###
-    #################
-    def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+    # methods
+    # 숫자 버튼이 클릭되었을 때 호출되는 메서드
+    def number_clicked(self, text):
+        current_text = self.result_display.text()
+        new_text = current_text + text
+        self.result_display.setText(new_text)
 
-    def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+    # 사칙연산 버튼이 클릭되었을 때 호출되는 메서드
+    def operation_clicked(self, text):
+        current_text = self.result_display.text()
+        if current_text:
+            self.pending_operation = text
+            new_text = current_text + ' ' + text + ' '
+            self.result_display.setText(new_text)
 
+    # 등호(=) 버튼이 클릭되었을 때 호출되는 메서드
     def button_equal_clicked(self):
-        equation = self.equation.text()
-        solution = eval(equation)
-        self.solution.setText(str(solution))
+        try:
+            result_text = self.result_display.text()
+            result = eval(result_text)  # 입력된 텍스트를 평가하여 계산
+            if '.' in result_text or '/' in result_text or '%' in result_text:
+                result = Decimal(result)  # 소수점, 나누기, 나머지 연산일 경우 Decimal 형식으로 변환
+            self.result_display.setText(str(result))
+        except Exception as e:
+            self.result_display.setText("Error")  # 예외 발생 시 "Error" 표시
+        self.pending_operation = None
 
+    # C 버튼이 클릭되었을 때 호출되는 메서드
     def button_clear_clicked(self):
-        self.equation.setText("")
-        self.solution.setText("")
+        self.result_display.clear()
+        self.pending_operation = None
 
+    # Backspace 버튼이 클릭되었을 때 호출되는 메서드
     def button_backspace_clicked(self):
-        equation = self.equation.text()
-        equation = equation[:-1]
-        self.equation.setText(equation)
+        result = self.result_display.text()
+        result = result[:-1]
+        self.result_display.setText(result)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
