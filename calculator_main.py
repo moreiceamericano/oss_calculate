@@ -6,9 +6,9 @@ import math
 class Main(QDialog):
     def __init__(self):
         super().__init__()
-        self.result_display = QLineEdit("")
-        getcontext().prec = 10
-        self.pending_operation = None
+        self.result_display = QLineEdit("")  
+        getcontext().prec = 10  # Decimal 연산 정확도 설정
+        self.pending_operation = None  # 현재 보류 중인 연산을 저장하는 변수
         self.init_ui()
 
     def init_ui(self):
@@ -26,7 +26,7 @@ class Main(QDialog):
         ]
 
         row, col = 0, 0
-        
+
         for button_text in buttons:
             button = QPushButton(button_text)
 
@@ -67,7 +67,6 @@ class Main(QDialog):
         self.setLayout(main_layout)
         self.show()
 
-    # methods
     # 숫자 버튼이 클릭되었을 때 호출되는 메서드
     def number_clicked(self, text):
         current_text = self.result_display.text()
@@ -99,11 +98,80 @@ class Main(QDialog):
         self.result_display.clear()
         self.pending_operation = None
 
+    # CE 버튼이 클릭되었을 때 호출되는 메서드
+    def button_ce_clicked(self):
+        self.result_display.clear()
+        self.pending_operation = None
+
     # Backspace 버튼이 클릭되었을 때 호출되는 메서드
     def button_backspace_clicked(self):
         result = self.result_display.text()
         result = result[:-1]
         self.result_display.setText(result)
+
+    # x^2 버튼이 클릭되었을 때 호출되는 메서드
+    def square_button_clicked(self):
+        current_text = self.result_display.text()
+        try:
+            result = float(current_text) ** 2  # 현재 값의 제곱 계산
+            self.result_display.setText(str(result))
+        except Exception as e:
+            self.result_display.setText("Error")  # 예외 발생 시 "Error" 표시
+        self.pending_operation = None
+
+    # 1/x 버튼이 클릭되었을 때 호출되는 메서드
+    def reciprocal_button_clicked(self):
+        current_text = self.result_display.text()
+        try:
+            result = 1 / float(current_text)  # 현재 값의 역수 계산
+            self.result_display.setText(str(result))
+        except Exception as e:
+            self.result_display.setText("Error")  # 예외 발생 시 "Error" 표시
+        self.pending_operation = None
+
+    # √(루트) 버튼이 클릭되었을 때 호출되는 메서드
+    def sqrt_button_clicked(self):
+        current_text = self.result_display.text()
+        try:
+            result = math.sqrt(float(current_text))  # 현재 값의 제곱근 계산
+            self.result_display.setText(str(result))
+        except Exception as e:
+            self.result_display.setText("Error")  # 예외 발생 시 "Error" 표시
+        self.pending_operation = None
+
+    # +/- 버튼이 클릭되었을 때 호출되는 메서드
+    def plus_minus_button_clicked(self):
+        current_text = self.result_display.text()
+        try:
+            result = -1 * float(current_text)  # 현재 값에 대한 부호 반전
+            self.result_display.setText(str(result))
+        except Exception as e:
+            self.result_display.setText("Error")  # 예외 발생 시 "Error" 표시
+        self.pending_operation = None
+
+    # % 버튼이 클릭되었을 때 호출되는 메서드
+    def percent_button_clicked(self):
+        current_text = self.result_display.text()
+        try:
+            # 입력된 텍스트를 파싱하여 두 숫자에 대한 나머지 연산 수행
+            parts = current_text.split('%')
+            if len(parts) == 2:
+                num1 = float(parts[0])
+                num2 = float(parts[1])
+                result = num1 % num2
+                self.result_display.setText(str(result))
+            else:
+                self.result_display.setText("Error: Invalid input")
+        except Exception as e:
+            self.result_display.setText("Error")
+        self.pending_operation = None
+
+    # .(소수점) 버튼이 클릭되었을 때 호출되는 메서드
+    def dot_button_clicked(self):
+        current_text = self.result_display.text()
+        if not current_text or current_text[-1].isdigit():
+            new_text = current_text + '.'
+            self.result_display.setText(new_text)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
